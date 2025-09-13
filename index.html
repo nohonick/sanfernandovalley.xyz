@@ -1,443 +1,388 @@
-<!DOCTYPE html>
-<html lang="en">
+<!-- Hero Section -->
+    <div class="relative bg-gradient-to-r from-blue-600 to-indigo-700">
+        <div class="absolute inset-0 bg-black/20"></div>
+        <div class="relative mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8 lg:py-32">
+            <div class="text-center">
+                <h1 class="text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl">
+                    San Fernando Valley
+                </h1>
+                <p class="mx-auto mt-6 max-w-2xl text-xl text-indigo-100">
+                    Your comprehensive local business directory. Discover restaurants, services, and everything the San Fernando Valley has to offer.
+                </p>
+                
+                <!-- Quick Search -->
+                <div class="mx-auto mt-10 max-w-2xl" id="search">
+                    <div class="rounded-lg bg-white p-6 shadow-xl">
+                        <form class="space-y-4" id="searchForm">
+                            <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                                <div>
+                                    <label for="category" class="block text-sm font-medium text-gray-700">Category</label>
+                                    <select id="category" name="category" class="mt-1 block w-full rounded-md border-gray-300 bg-white py-2 pl-3 pr-10 text-base focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm">
+                                        <option value="">All Categories</option>
+                                        <option value="restaurants">Restaurants</option>
+                                        <option value="gyms">Gyms & Fitness</option>
+                                        <option value="auto">Auto Services</option>
+                                        <option value="beauty">Beauty & Personal Care</option>
+                                        <option value="home-services">Home Services</option>
+                                        <option value="shopping">Shopping</option>
+                                        <option value="bars">Bars & Nightlife</option>
+                                        <option value="health">Health & Medical</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label for="neighborhood" class="block text-sm font-medium text-gray-700">Neighborhood</label>
+                                    <select id="neighborhood" name="neighborhood" class="mt-1 block w-full rounded-md border-gray-300 bg-white py-2 pl-3 pr-10 text-base focus:border-blue-500 focus:outline-none focus:ring-blue-500 sm:text-sm">
+                                        <option value="">All Neighborhoods</option>
+                                        <option value="sherman-oaks">Sherman Oaks</option>
+                                        <option value="van-nuys">Van Nuys</option>
+                                        <option value="encino">Encino</option>
+                                        <option value="studio-city">Studio City</option>
+                                        <option value="north-hollywood">North Hollywood</option>
+                                        <option value="woodland-hills">Woodland Hills</option>
+                                        <option value="burbank">Burbank</option>
+                                        <option value="glendale">Glendale</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <button type="submit" class="w-full rounded-md bg-blue-600 px-4 py-3 text-base font-medium text-white shadow-sm hover:bg-blue-700 focus:outline-none focus<!DOCTYPE html>
+<html lang="en" class="h-full bg-gray-50">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>San Fernando Valley Business Directory</title>
-    <meta name="description" content="Find local businesses in the San Fernando Valley. Search gyms, restaurants, auto repair, beauty services, and more.">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        header {
-            text-align: center;
-            padding: 60px 0 40px 0;
-            color: white;
-        }
-
-        h1 {
-            font-size: 3.5em;
-            margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-            font-weight: 700;
-        }
-
-        .subtitle {
-            font-size: 1.4em;
-            opacity: 0.9;
-            margin-bottom: 20px;
-            font-weight: 300;
-        }
-
-        .tagline {
-            font-size: 1.1em;
-            opacity: 0.8;
-            margin-bottom: 40px;
-        }
-
-        .search-section {
-            background: white;
-            padding: 50px 40px;
-            border-radius: 20px;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
-            margin-bottom: 40px;
-            max-width: 900px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .search-title {
-            font-size: 1.8em;
-            color: #333;
-            margin-bottom: 30px;
-            text-align: center;
-            font-weight: 600;
-        }
-
-        .search-form {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 25px;
-            margin-bottom: 25px;
-        }
-
-        .form-group {
-            display: flex;
-            flex-direction: column;
-        }
-
-        label {
-            font-weight: 600;
-            margin-bottom: 12px;
-            color: #555;
-            font-size: 1.1em;
-        }
-
-        select {
-            padding: 18px 16px;
-            border: 2px solid #e1e5e9;
-            border-radius: 12px;
-            font-size: 16px;
-            transition: all 0.3s ease;
-            background: white;
-            cursor: pointer;
-        }
-
-        select:focus {
-            outline: none;
-            border-color: #667eea;
-            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
-        }
-
-        .search-btn {
-            grid-column: 1 / -1;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border: none;
-            padding: 20px 50px;
-            border-radius: 12px;
-            font-size: 20px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .search-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
-        }
-
-        .search-btn:disabled {
-            opacity: 0.7;
-            cursor: not-allowed;
-            transform: none;
-        }
-
-        .results-section {
-            background: white;
-            border-radius: 20px;
-            padding: 40px;
-            margin-bottom: 40px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-            display: none;
-        }
-
-        .results-header {
-            font-size: 1.8em;
-            color: #333;
-            margin-bottom: 25px;
-            text-align: center;
-            font-weight: 600;
-        }
-
-        .business-card {
-            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-            border-radius: 15px;
-            padding: 25px;
-            margin-bottom: 20px;
-            border-left: 5px solid #667eea;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .business-card:hover {
-            transform: translateX(8px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-        }
-
-        .business-name {
-            font-size: 1.4em;
-            font-weight: 700;
-            color: #333;
-            margin-bottom: 10px;
-        }
-
-        .business-description {
-            color: #666;
-            margin-bottom: 12px;
-            line-height: 1.5;
-        }
-
-        .business-contact {
-            color: #555;
-            margin-bottom: 8px;
-        }
-
-        .business-contact strong {
-            color: #333;
-        }
-
-        .business-website {
-            margin-bottom: 15px;
-        }
-
-        .business-website a {
-            color: #667eea;
-            text-decoration: none;
-            font-weight: 500;
-        }
-
-        .business-website a:hover {
-            text-decoration: underline;
-        }
-
-        .business-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-top: 15px;
-        }
-
-        .tag {
-            background: #667eea;
-            color: white;
-            padding: 6px 14px;
-            border-radius: 25px;
-            font-size: 0.9em;
-            font-weight: 500;
-            text-transform: capitalize;
-        }
-
-        .tag.location {
-            background: #28a745;
-        }
-
-        .tag.specialization {
-            background: #fd7e14;
-        }
-
-        .tag.amenity {
-            background: #20c997;
-        }
-
-        .tag.pricing {
-            background: #6f42c1;
-        }
-
-        .loading {
-            text-align: center;
-            padding: 40px;
-            color: #666;
-            font-size: 1.2em;
-        }
-
-        .no-results {
-            text-align: center;
-            padding: 60px;
-            color: #666;
-        }
-
-        .no-results h3 {
-            font-size: 1.5em;
-            margin-bottom: 10px;
-            color: #555;
-        }
-
-        footer {
-            text-align: center;
-            padding: 50px 0;
-            color: white;
-            opacity: 0.8;
-        }
-
-        .footer-text {
-            font-size: 1.1em;
-        }
-
-        .error-message {
-            background: #f8d7da;
-            color: #721c24;
-            padding: 15px 20px;
-            border-radius: 10px;
-            margin-bottom: 20px;
-            border: 1px solid #f5c6cb;
-        }
-
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 2.5em;
-            }
-
-            .subtitle {
-                font-size: 1.2em;
-            }
-
-            .search-form {
-                grid-template-columns: 1fr;
-            }
-
-            .search-section {
-                padding: 30px 25px;
-                margin: 0 10px 40px 10px;
-            }
-
-            .results-section {
-                margin: 0 10px 40px 10px;
-                padding: 30px 20px;
-            }
-
-            .business-card {
-                padding: 20px;
-            }
-
-            .business-tags {
-                gap: 6px;
-            }
-
-            .tag {
-                font-size: 0.8em;
-                padding: 4px 10px;
-            }
-        }
-    </style>
+    <meta name="description" content="Find local businesses in the San Fernando Valley. Browse by category or neighborhood.">
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-    <div class="container">
-        <header>
-            <h1>San Fernando Valley</h1>
-            <p class="subtitle">Your Local Business Directory</p>
-            <p class="tagline">Discover the best businesses in your neighborhood</p>
-        </header>
-
-        <div class="search-section">
-            <h2 class="search-title">Find Local Businesses</h2>
-            <form class="search-form" id="searchForm">
-                <div class="form-group">
-                    <label for="category">What are you looking for?</label>
-                    <select id="category" name="category">
-                        <option value="">All Categories</option>
-                        <option value="restaurants">Restaurants</option>
-                        <option value="gyms">Gyms & Fitness</option>
-                        <option value="auto">Auto Services</option>
-                        <option value="beauty">Beauty & Personal Care</option>
-                        <option value="home-services">Home Services</option>
-                        <option value="shopping">Shopping</option>
-                        <option value="bars">Bars & Nightlife</option>
-                        <option value="health">Health & Medical</option>
-                        <option value="spas">Spas & Wellness</option>
-                        <option value="services">Professional Services</option>
-                        <option value="entertainment">Entertainment</option>
-                        <option value="food">Food Stores</option>
-                        <option value="coffee">Coffee & Tea</option>
-                        <option value="gas">Gas Stations</option>
-                        <option value="hotels">Hotels & Lodging</option>
-                        <option value="pets">Pet Services</option>
-                    </select>
+<body class="h-full">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm border-b border-gray-200">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div class="flex h-16 justify-between items-center">
+                <div class="flex items-center">
+                    <a href="#" class="flex items-center">
+                        <span class="text-2xl font-bold text-primary-600">SFV Directory</span>
+                    </a>
                 </div>
-
-                <div class="form-group">
-                    <label for="neighborhood">Where?</label>
-                    <select id="neighborhood" name="neighborhood">
-                        <option value="">All Neighborhoods</option>
-                        <option value="arleta">Arleta</option>
-                        <option value="burbank">Burbank</option>
-                        <option value="calabasas">Calabasas</option>
-                        <option value="canoga-park">Canoga Park</option>
-                        <option value="chatsworth">Chatsworth</option>
-                        <option value="encino">Encino</option>
-                        <option value="glendale">Glendale</option>
-                        <option value="granada-hills">Granada Hills</option>
-                        <option value="hidden-hills">Hidden Hills</option>
-                        <option value="kagel-canyon">Kagel Canyon</option>
-                        <option value="lake-balboa">Lake Balboa</option>
-                        <option value="lake-view-terrace">Lake View Terrace</option>
-                        <option value="mission-acres">Mission Acres</option>
-                        <option value="mission-hills">Mission Hills</option>
-                        <option value="north-hills">North Hills</option>
-                        <option value="north-hollywood">North Hollywood</option>
-                        <option value="northridge">Northridge</option>
-                        <option value="pacoima">Pacoima</option>
-                        <option value="panorama-city">Panorama City</option>
-                        <option value="porter-ranch">Porter Ranch</option>
-                        <option value="reseda">Reseda</option>
-                        <option value="san-fernando">San Fernando</option>
-                        <option value="shadow-hills">Shadow Hills</option>
-                        <option value="sherman-oaks">Sherman Oaks</option>
-                        <option value="sherman-village">Sherman Village</option>
-                        <option value="sherwood-forest">Sherwood Forest</option>
-                        <option value="studio-city">Studio City</option>
-                        <option value="sun-valley">Sun Valley</option>
-                        <option value="sunland-tujunga">Sunland-Tujunga</option>
-                        <option value="sylmar">Sylmar</option>
-                        <option value="tarzana">Tarzana</option>
-                        <option value="toluca-lake">Toluca Lake</option>
-                        <option value="universal-city">Universal City</option>
-                        <option value="valley-glen">Valley Glen</option>
-                        <option value="valley-village">Valley Village</option>
-                        <option value="van-nuys">Van Nuys</option>
-                        <option value="west-hills">West Hills</option>
-                        <option value="winnetka">Winnetka</option>
-                        <option value="woodland-hills">Woodland Hills</option>
-                    </select>
+                
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="#categories" class="text-gray-600 hover:text-gray-900 px-3 py-2 text-sm font-medium transition-colors">Categories</a>
+                        <a href="#neighborhoods" class="text-gray-600 hover:text-gray-900 px-3 py-2 text-sm font-medium transition-colors">Neighborhoods</a>
+                        <a href="#search" class="text-gray-600 hover:text-gray-900 px-3 py-2 text-sm font-medium transition-colors">Search</a>
+                    </div>
                 </div>
-
-                <button type="submit" class="search-btn" id="searchButton">Find Businesses</button>
-            </form>
-        </div>
-
-        <div class="results-section" id="resultsSection">
-            <h2 class="results-header">Search Results</h2>
-            <div id="resultsContainer">
-                <!-- Results will appear here -->
+                
+                <div class="md:hidden">
+                    <button type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
             </div>
         </div>
+    </nav>
 
-        <footer>
-            <p class="footer-text">&copy; 2025 San Fernando Valley Directory | Discover Local Businesses</p>
-        </footer>
+    <!-- Hero Section -->
+    <div class="relative bg-gradient-to-r from-primary-600 to-indigo-700">
+        <div class="absolute inset-0 bg-black/20"></div>
+        <div class="relative mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8 lg:py-32">
+            <div class="text-center">
+                <h1 class="text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl">
+                    San Fernando Valley
+                </h1>
+                <p class="mx-auto mt-6 max-w-2xl text-xl text-indigo-100">
+                    Your comprehensive local business directory. Discover restaurants, services, and everything the San Fernando Valley has to offer.
+                </p>
+                
+                <!-- Quick Search -->
+                <div class="mx-auto mt-10 max-w-2xl" id="search">
+                    <div class="rounded-lg bg-white p-6 shadow-xl">
+                        <form class="space-y-4" id="searchForm">
+                            <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                                <div>
+                                    <label for="category" class="block text-sm font-medium text-gray-700">Category</label>
+                                    <select id="category" name="category" class="mt-1 block w-full rounded-md border-gray-300 bg-white py-2 pl-3 pr-10 text-base focus:border-primary-500 focus:outline-none focus:ring-primary-500 sm:text-sm">
+                                        <option value="">All Categories</option>
+                                        <option value="restaurants">Restaurants</option>
+                                        <option value="gyms">Gyms & Fitness</option>
+                                        <option value="auto">Auto Services</option>
+                                        <option value="beauty">Beauty & Personal Care</option>
+                                        <option value="home-services">Home Services</option>
+                                        <option value="shopping">Shopping</option>
+                                        <option value="bars">Bars & Nightlife</option>
+                                        <option value="health">Health & Medical</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label for="neighborhood" class="block text-sm font-medium text-gray-700">Neighborhood</label>
+                                    <select id="neighborhood" name="neighborhood" class="mt-1 block w-full rounded-md border-gray-300 bg-white py-2 pl-3 pr-10 text-base focus:border-primary-500 focus:outline-none focus:ring-primary-500 sm:text-sm">
+                                        <option value="">All Neighborhoods</option>
+                                        <option value="sherman-oaks">Sherman Oaks</option>
+                                        <option value="van-nuys">Van Nuys</option>
+                                        <option value="encino">Encino</option>
+                                        <option value="studio-city">Studio City</option>
+                                        <option value="north-hollywood">North Hollywood</option>
+                                        <option value="woodland-hills">Woodland Hills</option>
+                                        <option value="burbank">Burbank</option>
+                                        <option value="glendale">Glendale</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <button type="submit" class="w-full rounded-md bg-primary-600 px-4 py-3 text-base font-medium text-white shadow-sm hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 transition-colors">
+                                Search Businesses
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+
+    <!-- Results Section -->
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8" id="resultsSection" style="display: none;">
+        <div class="py-8">
+            <div class="rounded-lg bg-white shadow-sm border border-gray-200 p-6">
+                <h2 class="text-2xl font-bold text-gray-900 mb-6">Search Results</h2>
+                <div id="resultsContainer"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+        <!-- Categories Section -->
+        <section id="categories" class="mb-20">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Browse by Category</h2>
+                <p class="mt-4 text-lg text-gray-600">Find the businesses you need by browsing our categories</p>
+            </div>
+            
+            <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+                <div class="group cursor-pointer rounded-lg bg-white p-6 shadow-sm ring-1 ring-gray-200 hover:shadow-md hover:ring-primary-500 transition-all duration-200 category-card" data-category="restaurants">
+                    <div class="flex items-center space-x-3">
+                        <div class="flex h-12 w-12 items-center justify-center rounded-lg bg-red-100 text-red-600 group-hover:bg-red-200 transition-colors">
+                            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="text-sm font-medium text-gray-900 group-hover:text-primary-600 transition-colors">Restaurants</h3>
+                            <p class="text-sm text-gray-500">Dining establishments</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="group cursor-pointer rounded-lg bg-white p-6 shadow-sm ring-1 ring-gray-200 hover:shadow-md hover:ring-primary-500 transition-all duration-200 category-card" data-category="gyms">
+                    <div class="flex items-center space-x-3">
+                        <div class="flex h-12 w-12 items-center justify-center rounded-lg bg-orange-100 text-orange-600 group-hover:bg-orange-200 transition-colors">
+                            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="text-sm font-medium text-gray-900 group-hover:text-primary-600 transition-colors">Gyms & Fitness</h3>
+                            <p class="text-sm text-gray-500">Fitness centers</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="group cursor-pointer rounded-lg bg-white p-6 shadow-sm ring-1 ring-gray-200 hover:shadow-md hover:ring-primary-500 transition-all duration-200 category-card" data-category="auto">
+                    <div class="flex items-center space-x-3">
+                        <div class="flex h-12 w-12 items-center justify-center rounded-lg bg-blue-100 text-blue-600 group-hover:bg-blue-200 transition-colors">
+                            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 9.172V5L8 4z" />
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="text-sm font-medium text-gray-900 group-hover:text-primary-600 transition-colors">Auto Services</h3>
+                            <p class="text-sm text-gray-500">Vehicle maintenance</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="group cursor-pointer rounded-lg bg-white p-6 shadow-sm ring-1 ring-gray-200 hover:shadow-md hover:ring-primary-500 transition-all duration-200 category-card" data-category="beauty">
+                    <div class="flex items-center space-x-3">
+                        <div class="flex h-12 w-12 items-center justify-center rounded-lg bg-pink-100 text-pink-600 group-hover:bg-pink-200 transition-colors">
+                            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="text-sm font-medium text-gray-900 group-hover:text-primary-600 transition-colors">Beauty & Personal Care</h3>
+                            <p class="text-sm text-gray-500">Salons and services</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="group cursor-pointer rounded-lg bg-white p-6 shadow-sm ring-1 ring-gray-200 hover:shadow-md hover:ring-primary-500 transition-all duration-200 category-card" data-category="home-services">
+                    <div class="flex items-center space-x-3">
+                        <div class="flex h-12 w-12 items-center justify-center rounded-lg bg-green-100 text-green-600 group-hover:bg-green-200 transition-colors">
+                            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2H5a2 2 0 00-2-2z" />
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="text-sm font-medium text-gray-900 group-hover:text-primary-600 transition-colors">Home Services</h3>
+                            <p class="text-sm text-gray-500">Contractors and repair</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="group cursor-pointer rounded-lg bg-white p-6 shadow-sm ring-1 ring-gray-200 hover:shadow-md hover:ring-primary-500 transition-all duration-200 category-card" data-category="shopping">
+                    <div class="flex items-center space-x-3">
+                        <div class="flex h-12 w-12 items-center justify-center rounded-lg bg-purple-100 text-purple-600 group-hover:bg-purple-200 transition-colors">
+                            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="text-sm font-medium text-gray-900 group-hover:text-primary-600 transition-colors">Shopping</h3>
+                            <p class="text-sm text-gray-500">Retail stores</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="group cursor-pointer rounded-lg bg-white p-6 shadow-sm ring-1 ring-gray-200 hover:shadow-md hover:ring-primary-500 transition-all duration-200 category-card" data-category="health">
+                    <div class="flex items-center space-x-3">
+                        <div class="flex h-12 w-12 items-center justify-center rounded-lg bg-teal-100 text-teal-600 group-hover:bg-teal-200 transition-colors">
+                            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="text-sm font-medium text-gray-900 group-hover:text-primary-600 transition-colors">Health & Medical</h3>
+                            <p class="text-sm text-gray-500">Medical services</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="group cursor-pointer rounded-lg bg-white p-6 shadow-sm ring-1 ring-gray-200 hover:shadow-md hover:ring-primary-500 transition-all duration-200 category-card" data-category="entertainment">
+                    <div class="flex items-center space-x-3">
+                        <div class="flex h-12 w-12 items-center justify-center rounded-lg bg-indigo-100 text-indigo-600 group-hover:bg-indigo-200 transition-colors">
+                            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1.01M15 10h1.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="text-sm font-medium text-gray-900 group-hover:text-primary-600 transition-colors">Entertainment</h3>
+                            <p class="text-sm text-gray-500">Movies and venues</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Neighborhoods Section -->
+        <section id="neighborhoods" class="bg-white rounded-lg border border-gray-200 p-8 shadow-sm">
+            <div class="text-center mb-8">
+                <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Browse by Neighborhood</h2>
+                <p class="mt-4 text-lg text-gray-600">Explore businesses in your area</p>
+            </div>
+            
+            <div class="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
+                <button class="text-left p-3 rounded-lg border border-gray-200 hover:border-primary-500 hover:bg-primary-50 transition-all duration-200 neighborhood-link" data-neighborhood="sherman-oaks">
+                    <span class="text-sm font-medium text-gray-900">Sherman Oaks</span>
+                </button>
+                <button class="text-left p-3 rounded-lg border border-gray-200 hover:border-primary-500 hover:bg-primary-50 transition-all duration-200 neighborhood-link" data-neighborhood="van-nuys">
+                    <span class="text-sm font-medium text-gray-900">Van Nuys</span>
+                </button>
+                <button class="text-left p-3 rounded-lg border border-gray-200 hover:border-primary-500 hover:bg-primary-50 transition-all duration-200 neighborhood-link" data-neighborhood="encino">
+                    <span class="text-sm font-medium text-gray-900">Encino</span>
+                </button>
+                <button class="text-left p-3 rounded-lg border border-gray-200 hover:border-primary-500 hover:bg-primary-50 transition-all duration-200 neighborhood-link" data-neighborhood="studio-city">
+                    <span class="text-sm font-medium text-gray-900">Studio City</span>
+                </button>
+                <button class="text-left p-3 rounded-lg border border-gray-200 hover:border-primary-500 hover:bg-primary-50 transition-all duration-200 neighborhood-link" data-neighborhood="north-hollywood">
+                    <span class="text-sm font-medium text-gray-900">North Hollywood</span>
+                </button>
+                <button class="text-left p-3 rounded-lg border border-gray-200 hover:border-primary-500 hover:bg-primary-50 transition-all duration-200 neighborhood-link" data-neighborhood="woodland-hills">
+                    <span class="text-sm font-medium text-gray-900">Woodland Hills</span>
+                </button>
+                <button class="text-left p-3 rounded-lg border border-gray-200 hover:border-primary-500 hover:bg-primary-50 transition-all duration-200 neighborhood-link" data-neighborhood="burbank">
+                    <span class="text-sm font-medium text-gray-900">Burbank</span>
+                </button>
+                <button class="text-left p-3 rounded-lg border border-gray-200 hover:border-primary-500 hover:bg-primary-50 transition-all duration-200 neighborhood-link" data-neighborhood="glendale">
+                    <span class="text-sm font-medium text-gray-900">Glendale</span>
+                </button>
+                <button class="text-left p-3 rounded-lg border border-gray-200 hover:border-primary-500 hover:bg-primary-50 transition-all duration-200 neighborhood-link" data-neighborhood="northridge">
+                    <span class="text-sm font-medium text-gray-900">Northridge</span>
+                </button>
+                <button class="text-left p-3 rounded-lg border border-gray-200 hover:border-primary-500 hover:bg-primary-50 transition-all duration-200 neighborhood-link" data-neighborhood="canoga-park">
+                    <span class="text-sm font-medium text-gray-900">Canoga Park</span>
+                </button>
+                <button class="text-left p-3 rounded-lg border border-gray-200 hover:border-primary-500 hover:bg-primary-50 transition-all duration-200 neighborhood-link" data-neighborhood="chatsworth">
+                    <span class="text-sm font-medium text-gray-900">Chatsworth</span>
+                </button>
+                <button class="text-left p-3 rounded-lg border border-gray-200 hover:border-primary-500 hover:bg-primary-50 transition-all duration-200 neighborhood-link" data-neighborhood="reseda">
+                    <span class="text-sm font-medium text-gray-900">Reseda</span>
+                </button>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-gray-200">
+        <div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <p class="text-sm text-gray-500">&copy; 2025 San Fernando Valley Directory. Find local businesses in the SFV.</p>
+            </div>
+        </div>
+    </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script>
-        // Your Supabase credentials - already filled in!
+        // Supabase configuration
         const SUPABASE_URL = 'https://rnkbkjnxnumqtctetyvz.supabase.co';
         const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJua2Jram54bnVtcXRjdGV0eXZ6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTY2NTQ0NjUsImV4cCI6MjA3MjIzMDQ2NX0.0I_IhSSq4g2kh_A55uDmg7TcieWaonMK33UQPc-lC14';
         
-        // Initialize Supabase client
         const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
         // Search form handler
         document.getElementById('searchForm').addEventListener('submit', async function(e) {
             e.preventDefault();
-            
             const category = document.getElementById('category').value;
             const neighborhood = document.getElementById('neighborhood').value;
-            
             await searchBusinesses(category, neighborhood);
+        });
+
+        // Category card handlers
+        document.querySelectorAll('.category-card').forEach(card => {
+            card.addEventListener('click', async function(e) {
+                e.preventDefault();
+                const category = this.getAttribute('data-category');
+                document.getElementById('category').value = category;
+                document.getElementById('neighborhood').value = '';
+                await searchBusinesses(category, '');
+                document.getElementById('resultsSection').scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+
+        // Neighborhood link handlers
+        document.querySelectorAll('.neighborhood-link').forEach(link => {
+            link.addEventListener('click', async function(e) {
+                e.preventDefault();
+                const neighborhood = this.getAttribute('data-neighborhood');
+                document.getElementById('category').value = '';
+                document.getElementById('neighborhood').value = neighborhood;
+                await searchBusinesses('', neighborhood);
+                document.getElementById('resultsSection').scrollIntoView({ behavior: 'smooth' });
+            });
         });
 
         async function searchBusinesses(categorySlug, neighborhoodSlug) {
             const resultsSection = document.getElementById('resultsSection');
             const resultsContainer = document.getElementById('resultsContainer');
-            const searchButton = document.getElementById('searchButton');
             
-            // Show loading state
             resultsSection.style.display = 'block';
-            resultsContainer.innerHTML = '<div class="loading">🔍 Searching businesses...</div>';
-            searchButton.disabled = true;
-            searchButton.textContent = 'Searching...';
+            resultsContainer.innerHTML = `
+                <div class="flex items-center justify-center py-8">
+                    <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-primary-600"></div>
+                    <span class="ml-3 text-gray-600">Searching businesses...</span>
+                </div>
+            `;
             
             try {
-                // Build the query
                 let query = supabase
                     .from('businesses')
                     .select(`
@@ -451,21 +396,16 @@
                 
                 const { data: businesses, error } = await query;
                 
-                if (error) {
-                    throw error;
-                }
+                if (error) throw error;
                 
-                // Filter results based on category and neighborhood
                 let filteredBusinesses = businesses || [];
                 
-                // Filter by category if selected
                 if (categorySlug) {
                     filteredBusinesses = filteredBusinesses.filter(business => 
                         business.categories && business.categories.slug === categorySlug
                     );
                 }
                 
-                // Filter by neighborhood if selected
                 if (neighborhoodSlug) {
                     filteredBusinesses = filteredBusinesses.filter(business => 
                         business.business_tags && business.business_tags.some(bt => 
@@ -477,104 +417,68 @@
                 displayResults(filteredBusinesses, categorySlug, neighborhoodSlug);
                 
             } catch (error) {
-                console.error('Error searching businesses:', error);
+                console.error('Error:', error);
                 resultsContainer.innerHTML = `
-                    <div class="error-message">
-                        <strong>Sorry!</strong> There was an error searching for businesses. Please try again.
-                        <br><small>Error: ${error.message}</small>
+                    <div class="rounded-md bg-red-50 p-4">
+                        <div class="text-sm text-red-700">Error loading results. Please try again.</div>
                     </div>
                 `;
-            } finally {
-                searchButton.disabled = false;
-                searchButton.textContent = 'Find Businesses';
             }
         }
 
         function displayResults(businesses, categorySlug, neighborhoodSlug) {
             const resultsContainer = document.getElementById('resultsContainer');
             
-            // Create search description
-            let searchDesc = 'All businesses';
-            if (categorySlug || neighborhoodSlug) {
-                searchDesc = '';
-                if (categorySlug) {
-                    const categoryName = document.querySelector(`option[value="${categorySlug}"]`).textContent;
-                    searchDesc += categoryName;
-                }
-                if (neighborhoodSlug) {
-                    const neighborhoodName = document.querySelector(`option[value="${neighborhoodSlug}"]`).textContent;
-                    searchDesc += (searchDesc ? ' in ' : '') + neighborhoodName;
-                }
-            }
-            
             if (businesses.length === 0) {
                 resultsContainer.innerHTML = `
-                    <div class="no-results">
-                        <h3>No businesses found</h3>
-                        <p>We couldn't find any businesses matching your search for "${searchDesc}".</p>
-                        <p>Try selecting different options or browse all categories.</p>
+                    <div class="text-center py-12">
+                        <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                        </svg>
+                        <h3 class="mt-4 text-sm font-medium text-gray-900">No businesses found</h3>
+                        <p class="mt-2 text-sm text-gray-500">Try a different category or neighborhood.</p>
                     </div>
                 `;
                 return;
             }
             
             const businessCards = businesses.map(business => {
-                // Extract and categorize tags
                 const tags = business.business_tags
                     ?.map(bt => bt.tags)
-                    .filter(tag => tag) // Remove null tags
-                    .map(tag => ({
-                        ...tag,
-                        name: tag.name
-                    })) || [];
-                
-                const tagElements = tags
-                    .map(tag => `<span class="tag ${tag.tag_type}">${tag.name}</span>`)
-                    .join('');
-                
-                // Format phone number
-                const phoneDisplay = business.phone ? 
-                    `<div class="business-contact"><strong>Phone:</strong> <a href="tel:${business.phone}">${business.phone}</a></div>` : '';
-                
-                // Format website
-                const websiteDisplay = business.website ? 
-                    `<div class="business-website"><a href="${business.website}" target="_blank" rel="noopener">Visit Website →</a></div>` : '';
+                    .filter(tag => tag)
+                    .map(tag => `<span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-primary-100 text-primary-800">${tag.name}</span>`)
+                    .join(' ') || '';
                 
                 return `
-                    <div class="business-card">
-                        <div class="business-name">${business.name}</div>
-                        ${business.description ? `<div class="business-description">${business.description}</div>` : ''}
-                        <div class="business-contact"><strong>Address:</strong> ${business.address}</div>
-                        ${phoneDisplay}
-                        ${websiteDisplay}
-                        ${tagElements ? `<div class="business-tags">${tagElements}</div>` : ''}
+                    <div class="border border-gray-200 rounded-lg p-6 hover:shadow-md transition-shadow">
+                        <h3 class="text-lg font-medium text-gray-900 mb-2">${business.name}</h3>
+                        <p class="text-gray-600 mb-3">${business.address}</p>
+                        ${business.phone ? `<p class="text-sm text-gray-500 mb-2">📞 <a href="tel:${business.phone}" class="text-primary-600 hover:text-primary-700">${business.phone}</a></p>` : ''}
+                        ${business.website ? `<p class="text-sm mb-3"><a href="${business.website}" target="_blank" class="text-primary-600 hover:text-primary-700 font-medium">Visit Website →</a></p>` : ''}
+                        ${tags ? `<div class="flex flex-wrap gap-2">${tags}</div>` : ''}
                     </div>
                 `;
             }).join('');
             
             resultsContainer.innerHTML = `
-                <div style="margin-bottom: 25px; padding: 15px; background: #e3f2fd; border-radius: 10px; text-align: center;">
-                    <strong>Found ${businesses.length} business${businesses.length !== 1 ? 'es' : ''}</strong> ${searchDesc ? `for "${searchDesc}"` : ''}
+                <div class="mb-6 p-4 bg-primary-50 rounded-lg">
+                    <p class="text-primary-800 font-medium">Found ${businesses.length} business${businesses.length !== 1 ? 'es' : ''}</p>
                 </div>
-                ${businessCards}
+                <div class="grid gap-4">
+                    ${businessCards}
+                </div>
             `;
         }
 
-        // Test connection on page load
-        window.addEventListener('load', function() {
-            console.log('San Fernando Valley Directory loaded successfully!');
-            
-            // Test database connection
-            supabase
-                .from('businesses')
-                .select('count', { count: 'exact' })
-                .then(({ count, error }) => {
-                    if (error) {
-                        console.error('Database connection error:', error);
-                    } else {
-                        console.log(`Connected to database. Found ${count} businesses.`);
-                    }
-                });
+        // Smooth scrolling for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
         });
     </script>
 </body>
