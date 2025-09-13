@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>San Fernando Valley Business Directory</title>
+    <meta name="description" content="Find local businesses in the San Fernando Valley. Search gyms, restaurants, auto repair, beauty services, and more.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 60px 0 40px 0;
+            color: white;
+        }
+
+        h1 {
+            font-size: 3.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            font-weight: 700;
+        }
+
+        .subtitle {
+            font-size: 1.4em;
+            opacity: 0.9;
+            margin-bottom: 20px;
+            font-weight: 300;
+        }
+
+        .tagline {
+            font-size: 1.1em;
+            opacity: 0.8;
+            margin-bottom: 40px;
+        }
+
+        .search-section {
+            background: white;
+            padding: 50px 40px;
+            border-radius: 20px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+            margin-bottom: 40px;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .search-title {
+            font-size: 1.8em;
+            color: #333;
+            margin-bottom: 30px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .search-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            margin-bottom: 25px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: #555;
+            font-size: 1.1em;
+        }
+
+        select {
+            padding: 18px 16px;
+            border: 2px solid #e1e5e9;
+            border-radius: 12px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            background: white;
+            cursor: pointer;
+        }
+
+        select:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .search-btn {
+            grid-column: 1 / -1;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 20px 50px;
+            border-radius: 12px;
+            font-size: 20px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .search-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+
+        .search-btn:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .results-section {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            display: none;
+        }
+
+        .results-header {
+            font-size: 1.8em;
+            color: #333;
+            margin-bottom: 25px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .business-card {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 20px;
+            border-left: 5px solid #667eea;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .business-card:hover {
+            transform: translateX(8px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .business-name {
+            font-size: 1.4em;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .business-description {
+            color: #666;
+            margin-bottom: 12px;
+            line-height: 1.5;
+        }
+
+        .business-contact {
+            color: #555;
+            margin-bottom: 8px;
+        }
+
+        .business-contact strong {
+            color: #333;
+        }
+
+        .business-website {
+            margin-bottom: 15px;
+        }
+
+        .business-website a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .business-website a:hover {
+            text-decoration: underline;
+        }
+
+        .business-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 15px;
+        }
+
+        .tag {
+            background: #667eea;
+            color: white;
+            padding: 6px 14px;
+            border-radius: 25px;
+            font-size: 0.9em;
+            font-weight: 500;
+            text-transform: capitalize;
+        }
+
+        .tag.location {
+            background: #28a745;
+        }
+
+        .tag.specialization {
+            background: #fd7e14;
+        }
+
+        .tag.amenity {
+            background: #20c997;
+        }
+
+        .tag.pricing {
+            background: #6f42c1;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #666;
+            font-size: 1.2em;
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 60px;
+            color: #666;
+        }
+
+        .no-results h3 {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+            color: #555;
+        }
+
+        footer {
+            text-align: center;
+            padding: 50px 0;
+            color: white;
+            opacity: 0.8;
+        }
+
+        .footer-text {
+            font-size: 1.1em;
+        }
+
+        .error-message {
+            background: #f8d7da;
+            color: #721c24;
+            padding: 15px 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #f5c6cb;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5em;
+            }
+
+            .subtitle {
+                font-size: 1.2em;
+            }
+
+            .search-form {
+                grid-template-columns: 1fr;
+            }
+
+            .search-section {
+                padding: 30px 25px;
+                margin: 0 10px 40px 10px;
+            }
+
+            .results-section {
+                margin: 0 10px 40px 10px;
+                padding: 30px 20px;
+            }
+
+            .business-card {
+                padding: 20px;
+            }
+
+            .business-tags {
+                gap: 6px;
+            }
+
+            .tag {
+                font-size: 0.8em;
+                padding: 4px 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>San Fernando Valley</h1>
+            <p class="subtitle">Your Local Business Directory</p>
+            <p class="tagline">Discover the best businesses in your neighborhood</p>
+        </header>
+
+        <div class="search-section">
+            <h2 class="search-title">Find Local Businesses</h2>
+            <form class="search-form" id="searchForm">
+                <div class="form-group">
+                    <label for="category">What are you looking for?</label>
+                    <select id="category" name="category">
+                        <option value="">All Categories</option>
+                        <option value="restaurants">Restaurants</option>
+                        <option value="gyms">Gyms & Fitness</option>
+                        <option value="auto">Auto Services</option>
+                        <option value="beauty">Beauty & Personal Care</option>
+                        <option value="home-services">Home Services</option>
+                        <option value="shopping">Shopping</option>
+                        <option value="bars">Bars & Nightlife</option>
+                        <option value="health">Health & Medical</option>
+                        <option value="spas">Spas & Wellness</option>
+                        <option value="services">Professional Services</option>
+                        <option value="entertainment">Entertainment</option>
+                        <option value="food">Food Stores</option>
+                        <option value="coffee">Coffee & Tea</option>
+                        <option value="gas">Gas Stations</option>
+                        <option value="hotels">Hotels & Lodging</option>
+                        <option value="pets">Pet Services</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="neighborhood">Where?</label>
+                    <select id="neighborhood" name="neighborhood">
+                        <option value="">All Neighborhoods</option>
+                        <option value="arleta">Arleta</option>
+                        <option value="burbank">Burbank</option>
+                        <option value="calabasas">Calabasas</option>
+                        <option value="canoga-park">Canoga Park</option>
+                        <option value="chatsworth">Chatsworth</option>
+                        <option value="encino">Encino</option>
+                        <option value="glendale">Glendale</option>
+                        <option value="granada-hills">Granada Hills</option>
+                        <option value="hidden-hills">Hidden Hills</option>
+                        <option value="kagel-canyon">Kagel Canyon</option>
+                        <option value="lake-balboa">Lake Balboa</option>
+                        <option value="lake-view-terrace">Lake View Terrace</option>
+                        <option value="mission-acres">Mission Acres</option>
+                        <option value="mission-hills">Mission Hills</option>
+                        <option value="north-hills">North Hills</option>
+                        <option value="north-hollywood">North Hollywood</option>
+                        <option value="northridge">Northridge</option>
+                        <option value="pacoima">Pacoima</option>
+                        <option value="panorama-city">Panorama City</option>
+                        <option value="porter-ranch">Porter Ranch</option>
+                        <option value="reseda">Reseda</option>
+                        <option value="san-fernando">San Fernando</option>
+                        <option value="shadow-hills">Shadow Hills</option>
+                        <option value="sherman-oaks">Sherman Oaks</option>
+                        <option value="sherman-village">Sherman Village</option>
+                        <option value="sherwood-forest">Sherwood Forest</option>
+                        <option value="studio-city">Studio City</option>
+                        <option value="sun-valley">Sun Valley</option>
+                        <option value="sunland-tujunga">Sunland-Tujunga</option>
+                        <option value="sylmar">Sylmar</option>
+                        <option value="tarzana">Tarzana</option>
+                        <option value="toluca-lake">Toluca Lake</option>
+                        <option value="universal-city">Universal City</option>
+                        <option value="valley-glen">Valley Glen</option>
+                        <option value="valley-village">Valley Village</option>
+                        <option value="van-nuys">Van Nuys</option>
+                        <option value="west-hills">West Hills</option>
+                        <option value="winnetka">Winnetka</option>
+                        <option value="woodland-hills">Woodland Hills</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="search-btn" id="searchButton">Find Businesses</button>
+            </form>
+        </div>
+
+        <div class="results-section" id="resultsSection">
+            <h2 class="results-header">Search Results</h2>
+            <div id="resultsContainer">
+                <!-- Results will appear here -->
+            </div>
+        </div>
+
+        <footer>
+            <p class="footer-text">&copy; 2025 San Fernando Valley Directory | Discover Local Businesses</p>
+        </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+        // Your Supabase credentials - already filled in!
+        const SUPABASE_URL = 'https://rnkbkjnxnumqtctetyvz.supabase.co';
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJua2Jram54bnVtcXRjdGV0eXZ6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTY2NTQ0NjUsImV4cCI6MjA3MjIzMDQ2NX0.0I_IhSSq4g2kh_A55uDmg7TcieWaonMK33UQPc-lC14';
+        
+        // Initialize Supabase client
+        const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+        // Search form handler
+        document.getElementById('searchForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const category = document.getElementById('category').value;
+            const neighborhood = document.getElementById('neighborhood').value;
+            
+            await searchBusinesses(category, neighborhood);
+        });
+
+        async function searchBusinesses(categorySlug, neighborhoodSlug) {
+            const resultsSection = document.getElementById('resultsSection');
+            const resultsContainer = document.getElementById('resultsContainer');
+            const searchButton = document.getElementById('searchButton');
+            
+            // Show loading state
+            resultsSection.style.display = 'block';
+            resultsContainer.innerHTML = '<div class="loading">🔍 Searching businesses...</div>';
+            searchButton.disabled = true;
+            searchButton.textContent = 'Searching...';
+            
+            try {
+                // Build the query
+                let query = supabase
+                    .from('businesses')
+                    .select(`
+                        *,
+                        categories (name, slug),
+                        business_tags (
+                            tags (name, slug, tag_type)
+                        )
+                    `)
+                    .eq('status', 'active');
+                
+                const { data: businesses, error } = await query;
+                
+                if (error) {
+                    throw error;
+                }
+                
+                // Filter results based on category and neighborhood
+                let filteredBusinesses = businesses || [];
+                
+                // Filter by category if selected
+                if (categorySlug) {
+                    filteredBusinesses = filteredBusinesses.filter(business => 
+                        business.categories && business.categories.slug === categorySlug
+                    );
+                }
+                
+                // Filter by neighborhood if selected
+                if (neighborhoodSlug) {
+                    filteredBusinesses = filteredBusinesses.filter(business => 
+                        business.business_tags && business.business_tags.some(bt => 
+                            bt.tags && bt.tags.slug === neighborhoodSlug
+                        )
+                    );
+                }
+                
+                displayResults(filteredBusinesses, categorySlug, neighborhoodSlug);
+                
+            } catch (error) {
+                console.error('Error searching businesses:', error);
+                resultsContainer.innerHTML = `
+                    <div class="error-message">
+                        <strong>Sorry!</strong> There was an error searching for businesses. Please try again.
+                        <br><small>Error: ${error.message}</small>
+                    </div>
+                `;
+            } finally {
+                searchButton.disabled = false;
+                searchButton.textContent = 'Find Businesses';
+            }
+        }
+
+        function displayResults(businesses, categorySlug, neighborhoodSlug) {
+            const resultsContainer = document.getElementById('resultsContainer');
+            
+            // Create search description
+            let searchDesc = 'All businesses';
+            if (categorySlug || neighborhoodSlug) {
+                searchDesc = '';
+                if (categorySlug) {
+                    const categoryName = document.querySelector(`option[value="${categorySlug}"]`).textContent;
+                    searchDesc += categoryName;
+                }
+                if (neighborhoodSlug) {
+                    const neighborhoodName = document.querySelector(`option[value="${neighborhoodSlug}"]`).textContent;
+                    searchDesc += (searchDesc ? ' in ' : '') + neighborhoodName;
+                }
+            }
+            
+            if (businesses.length === 0) {
+                resultsContainer.innerHTML = `
+                    <div class="no-results">
+                        <h3>No businesses found</h3>
+                        <p>We couldn't find any businesses matching your search for "${searchDesc}".</p>
+                        <p>Try selecting different options or browse all categories.</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            const businessCards = businesses.map(business => {
+                // Extract and categorize tags
+                const tags = business.business_tags
+                    ?.map(bt => bt.tags)
+                    .filter(tag => tag) // Remove null tags
+                    .map(tag => ({
+                        ...tag,
+                        name: tag.name
+                    })) || [];
+                
+                const tagElements = tags
+                    .map(tag => `<span class="tag ${tag.tag_type}">${tag.name}</span>`)
+                    .join('');
+                
+                // Format phone number
+                const phoneDisplay = business.phone ? 
+                    `<div class="business-contact"><strong>Phone:</strong> <a href="tel:${business.phone}">${business.phone}</a></div>` : '';
+                
+                // Format website
+                const websiteDisplay = business.website ? 
+                    `<div class="business-website"><a href="${business.website}" target="_blank" rel="noopener">Visit Website →</a></div>` : '';
+                
+                return `
+                    <div class="business-card">
+                        <div class="business-name">${business.name}</div>
+                        ${business.description ? `<div class="business-description">${business.description}</div>` : ''}
+                        <div class="business-contact"><strong>Address:</strong> ${business.address}</div>
+                        ${phoneDisplay}
+                        ${websiteDisplay}
+                        ${tagElements ? `<div class="business-tags">${tagElements}</div>` : ''}
+                    </div>
+                `;
+            }).join('');
+            
+            resultsContainer.innerHTML = `
+                <div style="margin-bottom: 25px; padding: 15px; background: #e3f2fd; border-radius: 10px; text-align: center;">
+                    <strong>Found ${businesses.length} business${businesses.length !== 1 ? 'es' : ''}</strong> ${searchDesc ? `for "${searchDesc}"` : ''}
+                </div>
+                ${businessCards}
+            `;
+        }
+
+        // Test connection on page load
+        window.addEventListener('load', function() {
+            console.log('San Fernando Valley Directory loaded successfully!');
+            
+            // Test database connection
+            supabase
+                .from('businesses')
+                .select('count', { count: 'exact' })
+                .then(({ count, error }) => {
+                    if (error) {
+                        console.error('Database connection error:', error);
+                    } else {
+                        console.log(`Connected to database. Found ${count} businesses.`);
+                    }
+                });
+        });
+    </script>
+</body>
+</html>
