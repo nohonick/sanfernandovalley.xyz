@@ -770,9 +770,8 @@ async function generateCategoryPages() {
     console.log('🚀 Starting category page generation...');
     
     try {
-        // Create category directory
-        const categoryDir = path.join(__dirname, 'category');
-        await fs.ensureDir(categoryDir);
+        // Category pages will be created in the root directory
+        const rootDir = __dirname;
         
         // Fetch all categories
         console.log('📊 Fetching categories from database...');
@@ -851,10 +850,10 @@ async function generateCategoryPages() {
                 const html = generateCategoryPage(category, businesses || [], allTags, categoryTags, locationTags);
                 
                 // Write file
-                const filePath = path.join(categoryDir, `${category.slug}.html`);
+                const filePath = path.join(rootDir, `${category.slug}.html`);
                 await fs.writeFile(filePath, html, 'utf8');
                 
-                console.log(`✅ Generated: /category/${category.slug}.html (${businesses?.length || 0} businesses)`);
+                console.log(`✅ Generated: /${category.slug}.html (${businesses?.length || 0} businesses)`);
                 
             } catch (error) {
                 console.error(`❌ Error generating page for ${category.name}:`, error.message);
@@ -863,7 +862,7 @@ async function generateCategoryPages() {
         }
         
         console.log('🎉 Category page generation completed!');
-        console.log(`📁 Generated ${categories.length} category pages in /category/ directory`);
+        console.log(`📁 Generated ${categories.length} category pages in root directory`);
         
     } catch (error) {
         console.error('💥 Error during category page generation:', error);
