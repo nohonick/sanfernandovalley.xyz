@@ -999,17 +999,7 @@
             await searchBusinesses(category, neighborhood);
         });
 
-        // Category card handlers
-        document.querySelectorAll('.category-card').forEach(card => {
-            card.addEventListener('click', async function(e) {
-                e.preventDefault();
-                const category = this.getAttribute('data-category');
-                document.getElementById('category').value = category;
-                document.getElementById('neighborhood').value = '';
-                await searchBusinesses(category, '');
-                document.getElementById('resultsSection').scrollIntoView({ behavior: 'smooth' });
-            });
-        });
+        // Category cards now link directly to category pages - no JavaScript needed
 
         // Neighborhood link handlers
         document.querySelectorAll('.neighborhood-link').forEach(link => {
