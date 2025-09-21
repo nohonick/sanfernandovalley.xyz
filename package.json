@@ -9,7 +9,10 @@
     "sitemap": "node generate-sitemap.js",
     "dev": "python -m http.server 8000",
     "deploy": "npm run build && npm run sitemap && echo 'Static pages generated! Upload to your hosting provider.'",
-    "vercel-build": "npm run build && npm run sitemap"
+    "vercel-build": "npm run build && npm run sitemap",
+    "hero-images": "node add-hero-images.js",
+    "hero-images-advanced": "node advanced-image-scraper.js",
+    "test-hero": "node test-hero-images.js"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.39.0",

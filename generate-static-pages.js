@@ -62,6 +62,13 @@ const BUSINESS_PAGE_TEMPLATE = `<!DOCTYPE html>
             overflow: hidden;
         }
 
+        .business-hero.has-image {
+            background: linear-gradient(rgba(37, 99, 235, 0.8), rgba(79, 70, 229, 0.8)), var(--hero-bg-image);
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
         .business-hero::before {
             content: '';
             position: absolute;
@@ -441,7 +448,7 @@ const BUSINESS_PAGE_TEMPLATE = `<!DOCTYPE html>
     </nav>
 
     <!-- Business Hero -->
-    <section class="business-hero">
+    <section class="business-hero{{HERO_IMAGE_CLASS}}"{{HERO_IMAGE_STYLE}}>
         <div class="container">
             <div class="business-header">
                 <nav class="breadcrumb">
@@ -598,6 +605,14 @@ function generateBusinessPage(business, businessHours, relatedBusinesses) {
     const categorizedTags = categorizeTagsByType(business.business_tags);
     const formattedHours = formatBusinessHours(businessHours);
     const locationTag = categorizedTags.location[0]?.name;
+    
+    // Generate hero image styling
+    let heroImageClass = '';
+    let heroImageStyle = '';
+    if (business.hero_image_url) {
+        heroImageClass = ' has-image';
+        heroImageStyle = ` style="--hero-bg-image: url('${business.hero_image_url}')"`;
+    }
     
     // Generate business tags HTML
     let businessTagsHTML = `<span class="business-tag">${business.categories?.name}</span>`;
@@ -802,7 +817,7 @@ function generateBusinessPage(business, businessHours, relatedBusinesses) {
         .replace(/\{\{BUSINESS_NAME\}\}/g, business.name)
         .replace(/\{\{BUSINESS_DESCRIPTION\}\}/g, business.description || `Find ${business.name} in the San Fernando Valley. ${business.categories?.name || 'Local business'} with contact information, hours, and more.`)
         .replace(/\{\{CANONICAL_URL\}\}/g, `https://sanfernandovalley.xyz/business/${business.slug}`)
-        .replace(/\{\{BUSINESS_IMAGE\}\}/g, '') // Add business image URL if available
+        .replace(/\{\{BUSINESS_IMAGE\}\}/g, business.hero_image_url || '') // Add business image URL if available
         .replace(/\{\{STRUCTURED_DATA\}\}/g, generateStructuredData(business))
         .replace(/\{\{CATEGORY_NAME\}\}/g, business.categories?.name || 'Business')
         .replace(/\{\{LOCATION_TAG\}\}/g, locationTag ? ` • ${locationTag}` : '')
@@ -812,7 +827,9 @@ function generateBusinessPage(business, businessHours, relatedBusinesses) {
         .replace(/\{\{CONTACT_INFO\}\}/g, contactInfoHTML)
         .replace(/\{\{FEATURES_SECTION\}\}/g, featuresSectionHTML)
         .replace(/\{\{HOURS_SECTION\}\}/g, hoursSectionHTML)
-        .replace(/\{\{RELATED_SECTION\}\}/g, relatedSectionHTML);
+        .replace(/\{\{RELATED_SECTION\}\}/g, relatedSectionHTML)
+        .replace(/\{\{HERO_IMAGE_CLASS\}\}/g, heroImageClass)
+        .replace(/\{\{HERO_IMAGE_STYLE\}\}/g, heroImageStyle);
     
     return html;
 }
