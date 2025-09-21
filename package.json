@@ -8,7 +8,8 @@
     "build": "node generate-static-pages.js",
     "sitemap": "node generate-sitemap.js",
     "dev": "python -m http.server 8000",
-    "deploy": "npm run build && npm run sitemap && echo 'Static pages generated! Upload to your hosting provider.'"
+    "deploy": "npm run build && npm run sitemap && echo 'Static pages generated! Upload to your hosting provider.'",
+    "vercel-build": "npm run build && npm run sitemap"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.39.0",
