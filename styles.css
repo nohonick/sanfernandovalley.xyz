@@ -327,19 +327,44 @@ body {
 
 /* Categories Grid */
 .categories-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.category-group {
+    margin-bottom: 2rem;
+}
+
+.category-group-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #111827;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #e5e7eb;
+}
+
+.category-group-grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 1.5rem;
+    gap: 1rem;
 }
 
 @media (min-width: 640px) {
-    .categories-grid {
+    .category-group-grid {
         grid-template-columns: repeat(2, 1fr);
     }
 }
 
 @media (min-width: 1024px) {
-    .categories-grid {
+    .category-group-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (min-width: 1280px) {
+    .category-group-grid {
         grid-template-columns: repeat(4, 1fr);
     }
 }
@@ -352,6 +377,9 @@ body {
     border: 1px solid #e5e7eb;
     cursor: pointer;
     transition: all 0.2s;
+    text-decoration: none;
+    color: inherit;
+    display: block;
 }
 
 .category-card:hover {
@@ -447,7 +475,105 @@ body {
     background-color: #c7d2fe;
 }
 
-.category-info h3 {
+/* Additional category icon colors */
+.category-icon.food, .category-icon.coffee, .category-icon.bars {
+    background-color: #fee2e2;
+    color: #dc2626;
+}
+
+.category-card:hover .category-icon.food,
+.category-card:hover .category-icon.coffee,
+.category-card:hover .category-icon.bars {
+    background-color: #fecaca;
+}
+
+.category-icon.mental-health, .category-icon.alternative-medicine, .category-icon.pharmacy, .category-icon.veterinary, .category-icon.spas {
+    background-color: #ccfbf1;
+    color: #0d9488;
+}
+
+.category-card:hover .category-icon.mental-health,
+.category-card:hover .category-icon.alternative-medicine,
+.category-card:hover .category-icon.pharmacy,
+.category-card:hover .category-icon.veterinary,
+.category-card:hover .category-icon.spas {
+    background-color: #99f6e4;
+}
+
+.category-icon.clothing, .category-icon.electronics, .category-icon.hardware {
+    background-color: #f3e8ff;
+    color: #9333ea;
+}
+
+.category-card:hover .category-icon.clothing,
+.category-card:hover .category-icon.electronics,
+.category-card:hover .category-icon.hardware {
+    background-color: #e9d5ff;
+}
+
+.category-icon.cleaning-services, .category-icon.repair-services, .category-icon.laundry, .category-icon.security, .category-icon.storage {
+    background-color: #dcfce7;
+    color: #16a34a;
+}
+
+.category-card:hover .category-icon.cleaning-services,
+.category-card:hover .category-icon.repair-services,
+.category-card:hover .category-icon.laundry,
+.category-card:hover .category-icon.security,
+.category-card:hover .category-icon.storage {
+    background-color: #bbf7d0;
+}
+
+.category-icon.legal, .category-icon.financial, .category-icon.banking, .category-icon.insurance, .category-icon.real-estate, .category-icon.photography, .category-icon.telecommunications {
+    background-color: #dbeafe;
+    color: #2563eb;
+}
+
+.category-card:hover .category-icon.legal,
+.category-card:hover .category-icon.financial,
+.category-card:hover .category-icon.banking,
+.category-card:hover .category-icon.insurance,
+.category-card:hover .category-icon.real-estate,
+.category-card:hover .category-icon.photography,
+.category-card:hover .category-icon.telecommunications {
+    background-color: #bfdbfe;
+}
+
+.category-icon.arts, .category-icon.movies, .category-icon.sports-recreation, .category-icon.religious, .category-icon.non-profit, .category-icon.government {
+    background-color: #e0e7ff;
+    color: #4f46e5;
+}
+
+.category-card:hover .category-icon.arts,
+.category-card:hover .category-icon.movies,
+.category-card:hover .category-icon.sports-recreation,
+.category-card:hover .category-icon.religious,
+.category-card:hover .category-icon.non-profit,
+.category-card:hover .category-icon.government {
+    background-color: #c7d2fe;
+}
+
+.category-icon.childcare, .category-icon.senior-care, .category-icon.education, .category-icon.event-planning, .category-icon.funeral-services, .category-icon.transportation, .category-icon.travel, .category-icon.hotels, .category-icon.agriculture, .category-icon.gas, .category-icon.pets {
+    background-color: #fed7aa;
+    color: #ea580c;
+}
+
+.category-card:hover .category-icon.childcare,
+.category-card:hover .category-icon.senior-care,
+.category-card:hover .category-icon.education,
+.category-card:hover .category-icon.event-planning,
+.category-card:hover .category-icon.funeral-services,
+.category-card:hover .category-icon.transportation,
+.category-card:hover .category-icon.travel,
+.category-card:hover .category-icon.hotels,
+.category-card:hover .category-icon.agriculture,
+.category-card:hover .category-icon.gas,
+.category-card:hover .category-icon.pets {
+    background-color: #fdba74;
+}
+
+.category-info h3,
+.category-info h4 {
     font-size: 0.875rem;
     font-weight: 500;
     color: #111827;
@@ -455,7 +581,8 @@ body {
     transition: color 0.2s;
 }
 
-.category-card:hover .category-info h3 {
+.category-card:hover .category-info h3,
+.category-card:hover .category-info h4 {
     color: #2563eb;
 }
 
