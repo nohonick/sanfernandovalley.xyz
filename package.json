@@ -1,0 +1,26 @@
+{
+  "name": "sanfernandovalley-directory",
+  "version": "1.0.0",
+  "description": "San Fernando Valley Business Directory - Static Site Generator",
+  "main": "generate-static-pages.js",
+  "scripts": {
+    "test": "node test-static-generation.js",
+    "build": "node generate-static-pages.js",
+    "sitemap": "node generate-sitemap.js",
+    "dev": "python -m http.server 8000",
+    "deploy": "npm run build && npm run sitemap && echo 'Static pages generated! Upload to your hosting provider.'"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.39.0",
+    "fs-extra": "^11.1.1"
+  },
+  "devDependencies": {},
+  "keywords": [
+    "business-directory",
+    "san-fernando-valley",
+    "static-site-generator",
+    "seo"
+  ],
+  "author": "San Fernando Valley Directory",
+  "license": "MIT"
+}

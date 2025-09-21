@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Page Test - San Fernando Valley Directory</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            line-height: 1.6;
+        }
+        .test-link {
+            display: block;
+            padding: 1rem;
+            margin: 0.5rem 0;
+            background-color: #f3f4f6;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            color: #2563eb;
+            font-weight: 500;
+            transition: background-color 0.2s;
+        }
+        .test-link:hover {
+            background-color: #e5e7eb;
+        }
+        .test-description {
+            color: #6b7280;
+            font-size: 0.875rem;
+            margin-top: 0.25rem;
+        }
+        h1 {
+            color: #111827;
+            margin-bottom: 2rem;
+        }
+        .note {
+            background-color: #eff6ff;
+            border: 1px solid #bfdbfe;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            margin-bottom: 2rem;
+        }
+        .note-title {
+            font-weight: 600;
+            color: #1e40af;
+            margin-bottom: 0.5rem;
+        }
+        .note-text {
+            color: #1e40af;
+            font-size: 0.875rem;
+        }
+    </style>
+</head>
+<body>
+    <h1>Business Page Test</h1>
+    
+    <div class="note">
+        <div class="note-title">Test Instructions</div>
+        <div class="note-text">
+            Click on any of the business links below to test the individual business pages. 
+            Each link will open the business page with the corresponding slug from the URL.
+            The page should dynamically load business data from Supabase and display it properly.
+        </div>
+    </div>
+
+    <h2>Test Business Pages</h2>
+    
+    <a href="/business/la-fitness-sherman-oaks" class="test-link">
+        LA Fitness Sherman Oaks
+        <div class="test-description">Test gym/fitness business page</div>
+    </a>
+    
+    <a href="/business/casa-vega-sherman-oaks" class="test-link">
+        Casa Vega Sherman Oaks
+        <div class="test-description">Test restaurant business page</div>
+    </a>
+    
+    <a href="/business/encino-auto-center" class="test-link">
+        Encino Auto Center
+        <div class="test-description">Test auto services business page</div>
+    </a>
+    
+    <a href="/business/studio-hair-salon" class="test-link">
+        Studio Hair Salon
+        <div class="test-description">Test beauty/personal care business page</div>
+    </a>
+    
+    <a href="/business/valley-plumbing-pro" class="test-link">
+        Valley Plumbing Pro
+        <div class="test-description">Test home services business page</div>
+    </a>
+
+    <h2>Additional Test Cases</h2>
+    
+    <a href="/business/non-existent-business" class="test-link">
+        Non-existent Business
+        <div class="test-description">Test error handling for invalid business slug</div>
+    </a>
+    
+    <a href="/business/" class="test-link">
+        Empty Business Slug
+        <div class="test-description">Test error handling for empty slug</div>
+    </a>
+
+    <h2>Features to Test</h2>
+    <ul>
+        <li>✅ Dynamic business data loading from Supabase</li>
+        <li>✅ Business header with name, category, and location badges</li>
+        <li>✅ Call and directions action buttons</li>
+        <li>✅ Contact information display</li>
+        <li>✅ Features and services organized by type</li>
+        <li>✅ Business hours display</li>
+        <li>✅ Related businesses sidebar</li>
+        <li>✅ Mobile responsive design</li>
+        <li>✅ Loading states and error handling</li>
+        <li>✅ Navigation breadcrumbs</li>
+    </ul>
+</body>
+</html>
