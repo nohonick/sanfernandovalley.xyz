@@ -394,19 +394,32 @@
             const businessSlug = getBusinessSlug();
             
             try {
-                // Fetch main business data
+                // First, fetch basic business data
                 const { data: businessData, error: businessError } = await supabase
                     .from('businesses')
                     .select(`
                         *,
-                        categories (name, slug),
-                        business_tags (
-                            tags (name, slug, tag_type)
-                        )
+                        categories (name, slug)
                     `)
                     .eq('slug', businessSlug)
                     .eq('status', 'active')
                     .single();
+
+                if (businessError) throw businessError;
+                if (!businessData) throw new Error('Business not found');
+
+                // Then fetch business tags separately
+                const { data: tagsData, error: tagsError } = await supabase
+                    .from('business_tags')
+                    .select(`
+                        tags (name, slug, tag_type)
+                    `)
+                    .eq('business_id', businessData.id);
+
+                if (tagsError) throw tagsError;
+
+                // Combine the data
+                businessData.business_tags = tagsData || [];
 
                 if (businessError) throw businessError;
                 if (!businessData) throw new Error('Business not found');
@@ -420,15 +433,12 @@
 
                 if (hoursError) throw hoursError;
 
-                // Fetch related businesses
+                // Fetch related businesses (same category, different business, max 10)
                 const { data: relatedData, error: relatedError } = await supabase
                     .from('businesses')
                     .select(`
                         *,
-                        categories (name, slug),
-                        business_tags (
-                            tags (name, slug, tag_type)
-                        )
+                        categories (name, slug)
                     `)
                     .eq('category_id', businessData.category_id)
                     .neq('id', businessData.id)
@@ -436,6 +446,34 @@
                     .limit(10);
 
                 if (relatedError) throw relatedError;
+
+                // Fetch tags for related businesses
+                if (relatedData && relatedData.length > 0) {
+                    const relatedBusinessIds = relatedData.map(b => b.id);
+                    const { data: relatedTagsData, error: relatedTagsError } = await supabase
+                        .from('business_tags')
+                        .select(`
+                            business_id,
+                            tags (name, slug, tag_type)
+                        `)
+                        .in('business_id', relatedBusinessIds);
+
+                    if (!relatedTagsError && relatedTagsData) {
+                        // Group tags by business_id
+                        const tagsByBusiness = {};
+                        relatedTagsData.forEach(item => {
+                            if (!tagsByBusiness[item.business_id]) {
+                                tagsByBusiness[item.business_id] = [];
+                            }
+                            tagsByBusiness[item.business_id].push(item);
+                        });
+
+                        // Add tags to each related business
+                        relatedData.forEach(business => {
+                            business.business_tags = tagsByBusiness[business.id] || [];
+                        });
+                    }
+                }
 
                 // Render the business
                 renderBusiness(businessData, hoursData || [], relatedData || []);
