@@ -4,9 +4,9 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# Generated static pages
-business/
-sitemap.xml
+# Generated static pages (commented out - we want to commit these for static hosting)
+# business/
+# sitemap.xml
 
 # Environment variables
 .env
